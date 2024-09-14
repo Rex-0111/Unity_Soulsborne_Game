@@ -6,7 +6,7 @@ public class Player_Locomotion : MonoBehaviour
     IAA_Player inputActions;
 
     //Basic Variables
-    [SerializeField] float Speed = 5f;
+    public float Speed = 5f;
     [SerializeField] Transform CameraTransform;
     CharacterController characterController;
     Animator animator;
@@ -128,5 +128,6 @@ public class Player_Locomotion : MonoBehaviour
         }
         animator.SetFloat(SpeedId, targetspeed);
     }
+    
 }
 
