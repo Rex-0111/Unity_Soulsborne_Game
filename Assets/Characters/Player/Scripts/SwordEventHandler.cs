@@ -1,13 +1,18 @@
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class SwordEventHandler : MonoBehaviour
 {
     [SerializeField] private GameObject SheatheWeapon;
     [SerializeField] private GameObject EquipWeapon;
+    private MeshRenderer MR_SheatheWeapon;
+    private MeshRenderer MR_EquipWeapon;
     [SerializeField] private Collider weaponCollider;
-
+    
     private void Start()
     {
+        MR_SheatheWeapon = SheatheWeapon.GetComponent<MeshRenderer>();
+        MR_EquipWeapon = EquipWeapon.GetComponent<MeshRenderer>();
         // Try to get the Collider if not assigned via Inspector
         if (weaponCollider == null)
         {
@@ -20,39 +25,31 @@ public class SwordEventHandler : MonoBehaviour
     }
 
     // Method to hide the equip weapon and show the sheathed weapon
+    // this is an Animation Event
     public void DisableEquipWeaponAndEnableSheatheWeapon()
     {
-        if (SheatheWeapon != null && EquipWeapon != null)
-        {
-            SheatheWeapon.SetActive(true);
-            EquipWeapon.SetActive(false);
-        }
-        else
-        {
-            Debug.LogWarning("SheatheWeapon or EquipWeapon GameObject is not assigned.");
-        }
+
+
+        MR_EquipWeapon.enabled = false;//SetActive(false);
+        MR_SheatheWeapon.enabled = true;//SetActive(true);
+     
     }
 
     // Method to hide the sheathed weapon and show the equipped weapon
+    // this is an Animation Event
     public void DisableSheatheWeaponAndEnableEquipWeapon()
     {
-        if (SheatheWeapon != null && EquipWeapon != null)
-        {
-            SheatheWeapon.SetActive(false);
-            EquipWeapon.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("SheatheWeapon or EquipWeapon GameObject is not assigned.");
-        }
+        MR_SheatheWeapon.enabled = false;//SetActive(true);
+        MR_EquipWeapon.enabled = true;//SetActive(false);
     }
 
     // Method to enable the weapon collider 
+    // These Are Animation Event 
     public void WeaponCollider_ON()
     {
-    // This is an Animation Event
         if (weaponCollider != null)
         {
+            weaponCollider.enabled = true;
             weaponCollider.enabled = true;
             
         }
@@ -63,9 +60,9 @@ public class SwordEventHandler : MonoBehaviour
     }
 
     // Method to disable the weapon collider
+    // this is an Animation Event
     public void WeaponCollider_OFF()
     {
-        // This is an Animation Event
         if (weaponCollider != null)
         {
             weaponCollider.enabled = false;
