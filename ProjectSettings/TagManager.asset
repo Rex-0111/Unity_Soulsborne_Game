@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - EnemySword
+  - PlayerSword
+  - UI
   layers:
   - Default
   - TransparentFX

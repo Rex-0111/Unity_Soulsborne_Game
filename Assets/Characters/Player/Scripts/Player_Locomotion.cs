@@ -11,6 +11,7 @@ public class Player_Locomotion : MonoBehaviour
     CharacterController characterController;
     Animator animator;
     public bool canMove;
+    Collider Collider;
 
     // Animator Parameter's Id
     int SpeedId;
@@ -27,6 +28,7 @@ public class Player_Locomotion : MonoBehaviour
         smoothTime = 7f;
         inputActions = new IAA_Player();
         animator = GetComponent<Animator>();
+        Collider = GetComponent<Collider>();
     }
 
     private void OnEnable()
@@ -105,7 +107,11 @@ public class Player_Locomotion : MonoBehaviour
         }
 
         // Move the character
-        characterController.SimpleMove(moveDirection * Speed);
+        if(Collider.enabled == true)
+        {
+            characterController.SimpleMove(moveDirection * Speed);
+        }
+
 
         // Handle idle, run, and sprint states
         IdleRunSprint(input);

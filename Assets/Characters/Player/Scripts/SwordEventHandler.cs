@@ -1,4 +1,3 @@
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class SwordEventHandler : MonoBehaviour
@@ -49,9 +48,7 @@ public class SwordEventHandler : MonoBehaviour
     {
         if (weaponCollider != null)
         {
-            weaponCollider.enabled = true;
-            weaponCollider.enabled = true;
-            
+            weaponCollider.enabled = true;   
         }
         else
         {
