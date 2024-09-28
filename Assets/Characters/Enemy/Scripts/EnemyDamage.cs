@@ -1,5 +1,8 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using static Unity.VisualScripting.Metadata;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -8,8 +11,11 @@ public class EnemyDamage : MonoBehaviour
     private Animator animator;
     private new Collider collider;
     
+
     private void Start()
     {
+        
+        
         collider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
 
@@ -45,8 +51,8 @@ public class EnemyDamage : MonoBehaviour
         animator.Play("Die02");
         yield return new WaitForSeconds(0.1f);
         collider.enabled = false;
-
-        // Optionally, destroy the game object after death
-        // Destroy(gameObject, 1f); // Adjust time as needed
+        yield return new WaitForSeconds(5f);
+        this.gameObject.SetActive(false);
     }
+
 }

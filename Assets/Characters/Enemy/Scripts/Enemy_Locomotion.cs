@@ -93,6 +93,8 @@ public class Enemy_Locomotion : MonoBehaviour
 
     private void HandleChasingState()
     {
+        this.gameObject.transform.LookAt(Player.transform.position);
+        
         if (Equip)
         {
             PlayAnimation(EquipId);
@@ -140,6 +142,7 @@ public class Enemy_Locomotion : MonoBehaviour
         {
             agent.speed = 0; // Stop moving during the attack animation
             animator.SetFloat(SpeedId, agent.speed);
+            this.gameObject.transform.LookAt(Player.transform.position);
         }
 
         if (IsAnimationComplete("Enemy_Attack01") || IsAnimationComplete("Enemy_Attack02"))
